@@ -18,12 +18,13 @@ class GDP_report:
             for line in reader:
                 try:
                     gdp_val = float(line['gdp'])
+                    country = line['country'].capitalize()
                 except ValueError:
                     continue
-                if line['country'] in self.avg_country_gdp:
-                    self.avg_country_gdp[line['country']].append(gdp_val)
+                if country in self.avg_country_gdp:
+                    self.avg_country_gdp[country].append(gdp_val)
                 else:
-                    self.avg_country_gdp[line['country']] = [gdp_val]
+                    self.avg_country_gdp[country] = [gdp_val]
                     
     def calculate(self) -> list:
         '''Вычисляет средний ВВП для каждой страны на основе собранных данных.
